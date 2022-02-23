@@ -17,7 +17,6 @@ const TabContent = (props) =>
 				(
 					each =>
 					{
-						console.log( each );
 						if ( each === null || each.title === null )
 						{
 							return null;
@@ -58,6 +57,7 @@ const TabContent = (props) =>
 
 				return (
 					<button
+						key={index}
 						className={[className, "btn"].join(" ")}
 						disabled={disabled}
 						onClick=

@@ -4,6 +4,6 @@ Hi,
 
 This is an attempt of a replication from the Codility exercise proposed by RangerTech,
 
-hopefully it has met the logic complexity and is suitable and acceptable,
+hopefully, it has met the logic complexity, is suitable and acceptable,
 
 Thank you
