@@ -2,10 +2,10 @@
 
 Hi,
 
-This is an attempt of a replication from the Codility exercise proposed by RangerTech,
+As I have just completed successfully the Codility exercise from RangerTechnical,
 
-hopefully, it has met the logic complexity, is suitable and acceptable,
+[Codility exercise result](https://ranger-29abe.web.app/)
 
-please find it here: [https://ranger-29abe.web.app/](https://ranger-29abe.web.app/)
+[this](https://ranger-29abe.web.app/) may be just a similar exercise with slightly more complex logic,
 
-Thank you
+Thanks!
