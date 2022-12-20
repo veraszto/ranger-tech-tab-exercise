@@ -1,88 +1,80 @@
 
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from 'react'
 
+const TabContent = (props) => {
+    const [
+        selected,
+        setSelected
+    ] = useState(0)
+	 const [
+        tabs,
+        setTabs
+    ] = useState([])
 
-const TabContent = (props) =>
-{
-	const [ selected, setSelected ] = useState(0);
-	const [ tabs, setTabs ] = useState([]);
+    useEffect
+    (
+        () => {
+            if (Boolean(props.tabs) === true) {
+                const builtTabs = props.tabs.map
+                ((each) => {
+                    if (each === null || each.title === null) {
+                        return null
+                    }
+                    return each
+                }).filter((each) => each !== null)
 
-	useEffect
-	(
-		() =>
-		{
-			if ( !! props.tabs === true )
-			{
-				const builtTabs = props.tabs.map
-				(
-					each =>
-					{
-						if ( each === null || each.title === null )
-						{
-							return null;
-						}
-						return each;
-					}
+                setTabs(builtTabs)
+                if (selected > builtTabs.length) {
+                    setSelected(0)
+                }
+            }
+        },
+        [props.tabs]
+    )
 
-				).filter(each => each !== null);
+    if (Boolean(props.tabs) === false || tabs.length <= 0) {
+        return <div>There are no tabs to draw</div>
+    }
 
-				setTabs(builtTabs);
-				if ( selected > builtTabs.length )
-				{
-					setSelected(0);
-				}
-			}
+    const buildButtons = () => {
+        const buttons = tabs.map
+        ((eachTab, index) => {
+            let className = 'btn'
+				 let disabled = false
+            if (index === selected) {
+                disabled = true
+                className = 'btn-selected'
+            }
 
-		}, [props.tabs]
-	);
+            return (
+                <button
+                    key={index}
+                    className={[
+                        className,
+                        'btn'
+                    ].join(' ')}
+                    disabled={disabled}
+                    onClick=
+                        {
+                            () => {
+                                setSelected(index)
+                            }
+                        }
+                >{eachTab.title}
+                </button>
+            )
+        })
+        return buttons
+    }
 
-	if ( !! props.tabs === false || tabs.length <= 0 )
-	{
-		return <div>There are no tabs to draw</div>;
-	}
+    return (
 
-	const buildButtons = () =>
-	{
-		const buttons = tabs.map
-		(
-			( eachTab, index ) =>
-			{
-				let disabled = false;
-				let className = "btn";
-				if ( index === selected )
-				{
-					disabled = true;
-					className = "btn-selected";
-				}
-
-				return (
-					<button
-						key={index}
-						className={[className, "btn"].join(" ")}
-						disabled={disabled}
-						onClick=
-						{
-							() =>
-							{
-								setSelected( index );
-							}
-						}
-					>{eachTab.title}
-					</button>
-				)
-			}
-		);
-		return buttons;
-	}
-
-	return (
-
-		<div className="tab-cont">
-			{buildButtons()}
-			<div className="view">{tabs[selected] && tabs[selected].content}
-			</div>
-		</div>
-	)
+        <div className="tab-cont">
+            {buildButtons()}
+            <div className="view">{tabs[selected] && tabs[selected].content}
+            </div>
+        </div>
+    )
 }
 
-export default TabContent;
+export default TabContent
